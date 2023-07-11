@@ -18,21 +18,29 @@
 
 
     <?php require('header.php');
+
+
+    // set the variable value blank
     $error_msg = "";
     if (isset($_POST['submit'])) {
 
+        // form validation check
         if ($_POST['department'] == "") {
             $error_msg = "Input Field Required";
-        }else if(!preg_match("/^[a-zA-Z-' ]*$/",$_POST['department'])){
-            $error_msg = "Only letters and space allowed ";
-              
-        }else {
 
+            // check input 
+        } else if (!preg_match("/^[a-zA-Z-' ]*$/", $_POST['department'])) {
+            $error_msg = "Only letters and space allowed ";
+        } else {
+
+            // stored the input value in variable
             $department = mysqli_real_escape_string($conn, $_POST['department']);
 
+            // sql insert query 
             $sql = "INSERT INTO departments (Department) VALUES('{$department}') ";
             mysqli_query($conn, $sql) or die(mysqli_error());
 
+            // redirect after completion
             header("location:index.php");
         }
     }
@@ -45,9 +53,15 @@
         <div class="row justify-content-center">
 
             <div class="col-12 col-md-5 ">
+                <!-- box start  -->
+
                 <div class="box">
+                    <!-- title   -->
                     <h2>Department</h2>
+                    <!-- divider line as a bottom line  -->
+
                     <div class="divider"></div>
+                    <!-- form start  -->
                     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                         <div class="form-group">
                             <label for="">Department</label>
@@ -58,8 +72,11 @@
                             <button class="btn btn-form px-5" name="submit">SUBMIT</button>
                         </div>
                     </form>
+                    <!-- form end  -->
                     <span class="text-muted ">Insert The Department Name</span>
                 </div>
+
+                <!-- box end  -->
             </div>
         </div>
     </div>

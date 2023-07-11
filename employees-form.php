@@ -21,46 +21,61 @@
     <?php
     require('header.php');
 
+    // set the variable value blank
     $error_msg1 = $error_msg2 = $error_msg3 = $error_msg4 = "";
     $name = $department = $age = $salary = "";
 
     if (isset($_POST['submit'])) {
 
-          
-      
-            $name = mysqli_real_escape_string($conn, $_POST['name']);
-            $department = mysqli_real_escape_string($conn, $_POST['department']);
-            $age = mysqli_real_escape_string($conn, $_POST['age']);
-            $salary = mysqli_real_escape_string($conn, $_POST['salary']);
-    
-            if ($name === '') {
-                $error_msg1 = " Name required";
-            }else if(!preg_match("/^[a-zA-Z-' ]*$/",$name)){
-                $error_msg1 = "Only letters and space allowed ";
-            }else if($department === ''){
-                $error_msg2 = "department required";
-            }else if($age === ''){
-                $error_msg3 = "age is required";
-            }else if(!preg_match("/^[0-9' ]*$/",$age)){
-                $error_msg3 = "Only Number allowed ";
-            }else if($salary === ''){
-                $error_msg4 = 'salary is required';
-            }else if(!preg_match("/^[0-9' ]*$/",$salary)){
-                $error_msg4 = "Only Number allowed ";
-            }else{
-                $sql = "INSERT INTO employees (`name`, `department`, `age`, `salary`) VALUES('{$name}','{$department}','{$age}','{$salary}') ";
-                if (mysqli_query($conn, $sql)) {
-                    header("location:employees.php");
-                }else {
-                    echo "<script>alert('Please Check')</script>";
-                }
-            }
 
-           
+
+        // stored the input value in variable
+        $name = mysqli_real_escape_string($conn, $_POST['name']);
+        $department = mysqli_real_escape_string($conn, $_POST['department']);
+        $age = mysqli_real_escape_string($conn, $_POST['age']);
+        $salary = mysqli_real_escape_string($conn, $_POST['salary']);
+
+        // form validation check
+        if ($name === '') {
+            $error_msg1 = " Name required";
+
+            // check input 
+        } else if (!preg_match("/^[a-zA-Z-' ]*$/", $name)) {
+            $error_msg1 = "Only letters and space allowed ";
+
+            // form validation check
+        } else if ($department === '') {
+            $error_msg2 = "department required";
+        } else if ($age === '') {
+            $error_msg3 = "age is required";
+
+            // check input 
+        } else if (!preg_match("/^[0-9' ]*$/", $age)) {
+            $error_msg3 = "Only Number allowed ";
+
+            // form validation check
+        } else if ($salary === '') {
+            $error_msg4 = 'salary is required';
+
+            // check input 
+        } else if (!preg_match("/^[0-9' ]*$/", $salary)) {
+            $error_msg4 = "Only Number allowed ";
+        } else {
+
+            // sql insert query 
+            $sql = "INSERT INTO employees (`name`, `department`, `age`, `salary`) VALUES('{$name}','{$department}','{$age}','{$salary}') ";
+            if (mysqli_query($conn, $sql)) {
+
+                // redirect after completion
+                header("location:employees.php");
+            } else {
+                echo "<script>alert('Please Check')</script>";
+            }
         }
-           
-        
-    
+    }
+
+
+
     ?>
 
 
@@ -73,10 +88,10 @@
                 <div class="box">
                     <h2>Emoployees</h2>
                     <div class="divider"></div>
-                    <form action="<?php  echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+                    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
                         <div class="form-group">
                             <label for="">Ful Name</label>
-                            <input type="text" class="form-control" name="name"  value="<?php echo $name; ?>">
+                            <input type="text" class="form-control" name="name" value="<?php echo $name; ?>">
                             <span class="alert text-warning"><?php echo $error_msg1; ?></span>
                         </div>
                         <div class="form-group ">

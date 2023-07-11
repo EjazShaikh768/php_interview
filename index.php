@@ -17,17 +17,19 @@
 
 <body class="body">
 
-<?php require('header.php'); ?>
+    <?php require('header.php'); ?>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-md-5 ">
                 <div class="box">
-                <div class="text-end">
-                    <a  href="departmet-form.php" class="btn btn-secondary">+</a>
-                </div>
-              
-                <h2>Department</h2>
-                <div class="divider"></div>
+                    <div class="text-end">
+                        <a href="departmet-form.php" class="btn btn-secondary">+</a>
+                    </div>
+
+                    <h2>Department</h2>
+                    <div class="divider"></div>
+
+                    <!-- table start  -->
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -36,24 +38,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <?php 
-                $sql = "SELECT * FROM departments";
-                $result = mysqli_query($conn,$sql) or die(mysqli_error());
-                if (mysqli_num_rows($result) > 0) {
-                    $no = 1;
-                    while($row = mysqli_fetch_assoc($result)){
-                        ?>
-                            <tr>
-                                <td><?php echo $no++; ?></td>
-                                <td><?php echo $row['Department']; ?></td>
-                            </tr>
-                            <?php } }else {
+                            <?php
+                            $sql = "SELECT * FROM departments";
+                            $result = mysqli_query($conn, $sql) or die(mysqli_error());
+                            if (mysqli_num_rows($result) > 0) {
+                                $no = 1;
+                                while ($row = mysqli_fetch_assoc($result)) {
+                            ?>
+                                    <tr>
+                                        <td><?php echo $no++; ?></td>
+                                        <td><?php echo $row['Department']; ?></td>
+                                    </tr>
+                            <?php }
+                            } else {
                                 echo '<div class="alert alert-warning" role="alert">
                                 There is no Records!
                               </div>';
                             } ?>
                         </tbody>
                     </table>
+
+                    <!-- table end  -->
                 </div>
             </div>
         </div>

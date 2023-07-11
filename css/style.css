@@ -2,17 +2,22 @@
     background-color: #ddd;
     overflow-x: hidden;
 }
-.header{
+
+/* header css  */
+.header {
     /* background: #fff; */
     padding: 20px 0;
     text-align: center;
     /* box-shadow: 2px 2px 1px 0.5px #c4bfbf; */
 }
+
 .header h1 {
     font-weight: 700;
     text-transform: uppercase;
 
 }
+
+/* box css  */
 .box {
     background-color: #fff;
     padding: 20px 40px;
@@ -21,6 +26,8 @@
     margin: 10% auto;
     border-radius: 4px;
 }
+
+/* form button  */
 .btn-form {
     border: 1px solid #fff;
     background: linear-gradient(#ddd, #fff);
@@ -35,7 +42,7 @@
 }
 
 
-
+/* divider means bottom line  */
 .divider {
     height: 5px;
     width: 70%;
